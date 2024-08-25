@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgb(231, 231, 231);
+        }
+        .navbar {
+            width: 100%;
+            margin-bottom: 20px; /* Added margin-bottom to create space below the navbar */
+        }
+        .container {
+            width: 400px;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            margin-top: 50px;
+            position: relative;
+        }
+        .form-container {
+            display: none;
+        }
+        .form-container.active {
+            display: block;
+        }
+        .toggle-btn {
+            margin: 10px 0;
+            text-align: center;
+            cursor: pointer;
+            color: blue;
+        }
+        .toggle-btn:hover {
+            text-decoration: underline;
+        }
+        .form-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+        }
+        .form-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .form-header {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Logo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="profile.html"><i class="fas fa-user"></i> Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="consultation.html"><i class="fas fa-comments"></i> Consultation</a>
+            </li>
+        </ul>
+        <button class="btn btn-outline-light ml-3" id="mode-toggle">Toggle Mode</button>
+    </div>
+</nav>
+
+<div class="container">   
+    <!-- Login Form -->
+    <div id="login-form" class="form-container active">
+        <img src="images/pyq1.png" alt="Login Image">
+        <form>
+            <div class="form-group">
+                <label for="loginEmail">Email address</label>
+                <input type="email" class="form-control" id="loginEmail" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" class="form-control" id="loginPassword" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+        <div class="toggle-btn" onclick="toggleForms()">Don't have an account? Register here</div>
+    </div>
+
+    <!-- Registration Form -->
+    <div id="register-form" class="form-container">
+        <div id="form-header" class="form-header">Register-Form</div>
+        <img src="/images/pyq1.png" alt="Register Image">
+        <form>
+            <div class="form-group">
+                <label for="registerName">Name</label>
+                <input type="text" class="form-control" id="registerName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="registerEmail">Email address</label>
+                <input type="email" class="form-control" id="registerEmail" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="registerPassword">Password</label>
+                <input type="password" class="form-control" id="registerPassword" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="registerConfirmPassword">Confirm Password</label>
+                <input type="password" class="form-control" id="registerConfirmPassword" placeholder="Confirm Password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </form>
+        <div class="toggle-btn" onclick="toggleForms()">Already have an account? Login here</div>
+    </div>
+</div>
+
+<!-- Bootstrap JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Custom JS to toggle forms -->
+<script>
+    function toggleForms() {
+        var loginForm = document.getElementById("login-form");
+        var registerForm = document.getElementById("register-form");
+        var formHeader = document.getElementById("form-header");
+
+        if (loginForm.classList.contains("active")) {
+            loginForm.classList.remove("active");
+            registerForm.classList.add("active");
+            formHeader.textContent = "Register-Form";
+        } else {
+            loginForm.classList.add("active");
+            registerForm.classList.remove("active");
+            formHeader.textContent = "Login-Form";
+        }
+    }
+</script>
+
+</body>
+</html>

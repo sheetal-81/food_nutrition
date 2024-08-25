@@ -1,0 +1,27 @@
+/* Styles for dark mode */
+body {
+            background-color: rgb(119, 114, 114)
+            
+          }
+          
+          .navbar {
+            background-color:rgb(214, 16, 16)
+          }
+          
+          .navbar-dark .navbar-nav .nav-link {
+            color: whitesmoke
+          }
+          
+          .dark-mode {
+            background-color: goldenrod !important;
+            color: black !important;
+          }
+          
+          .dark-mode .navbar {
+            background-color: black !important;
+          }
+          
+          .dark-mode .navbar-dark .navbar-nav .nav-link {
+            color: goldenrod !important;
+          }
+          
