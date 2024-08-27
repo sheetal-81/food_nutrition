@@ -15,19 +15,26 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: rgb(231, 231, 231);
+            background-color: #EDF2FB;
         }
         .navbar {
             width: 100%;
-            margin-bottom: 20px; /* Added margin-bottom to create space below the navbar */
+            margin-bottom: 20px;
         }
-        .container {
+        .flex-container {
+            display: flex;
+            justify-content: center;
+            align-items: stretch; /* Ensure all items stretch to the same height */
+            width: 100%;
+            max-width: 1000px; /* Adjust the width as needed */
+            margin-top: 50px;
+        }
+        .form-wrapper {
             width: 400px;
             padding: 20px;
-            background: #fff;
+            background: #E2EAFC;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
-            margin-top: 50px;
             position: relative;
         }
         .form-container {
@@ -51,89 +58,161 @@
             color: #333;
             text-align: center;
         }
-        .form-container img {
-            max-width: 100%;
-            height: auto;
+        .image-container {
+            display: flex;
+            align-items: center; /* Center image vertically */
+            justify-content: center; /* Center image horizontally */
+            width: 300px; /* Adjust the width as needed */
+            background-color: #fff; /* Match the form's background color */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
-            margin-bottom: 20px;
         }
-        .form-header {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 24px;
-            color: #333;
+        .image-container img {
+            width: 100%;
+            height: auto; /* Ensure the image maintains aspect ratio */
+            border-radius: 10px;
+            object-fit: cover; /* Ensure the image covers the container without stretching */
         }
+ /* Navbar Circle Image */
+ .navbar-brand img {
+      width: 50px;  /* Adjust the size as needed */
+      height: 50px; /* Adjust the size as needed */
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* Footer Styles */
+    .footer {
+      height: 60px; /* Adjust this value to your preferred height */
+      background-color: #f8f9fa; /* Optional: Customize background color */
+      color: black;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    /* Chatbot Icon */
+    #chatbot {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px; /* Adjust size as needed */
+      height: 50px; /* Adjust size as needed */
+      border-radius: 50%;
+      background-color: white; /* Background color */
+      cursor: pointer;
+      z-index: 1000; /* Ensure it appears above other elements */
+    }
+
+    /* Chat Window */
+    .chat-window {
+      position: fixed;
+      bottom: 80px; /* Position it above the chatbot icon */
+      right: 20px;
+      width: 300px; /* Adjust width as needed */
+      height: 400px; /* Adjust height as needed */
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      z-index: 1001;
+    }
+    
     </style>
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Logo</a>
+  <!-- Navbar -->
+  <!-- Fullscreen Logo View -->
+  <div id="logo-fullscreen" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:10000;">
+    <img src="images/logo.png" alt="Full Logo View" style="max-width:90%; max-height:90%;">
+    <button id="close-logo" style="position:absolute; top:20px; right:20px; font-size:30px; color:white; background:none; border:none; cursor:pointer;">&times;</button>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-info bg-light">
+    <!-- Replace Logo with Image in Circle -->
+    <a class="navbar-brand" href="#" id="logo">
+      <img src="images/logo.png" alt="Logo">
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="profile.html"><i class="fas fa-user"></i> Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="consultation.html"><i class="fas fa-comments"></i> Consultation</a>
-            </li>
-        </ul>
-        <button class="btn btn-outline-light ml-3" id="mode-toggle">Toggle Mode</button>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="profile.html"><i class="fas fa-user"></i> Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="consultation.html"><i class="fas fa-comments"></i> Consultation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="blog.html"><i class="fas fa-newspaper"></i> Blog & Articles</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
+        </li>
+      </ul>
+      <button class="btn btn-outline-danger ml-3" id="mode-toggle">Toggle Mode</button>
     </div>
-</nav>
+  </nav>
 
-<div class="container">   
-    <!-- Login Form -->
-    <div id="login-form" class="form-container active">
-        <img src="images/pyq1.png" alt="Login Image">
-        <form>
-            <div class="form-group">
-                <label for="loginEmail">Email address</label>
-                <input type="email" class="form-control" id="loginEmail" placeholder="Enter email">
-            </div>
-            <div class="form-group">
-                <label for="loginPassword">Password</label>
-                <input type="password" class="form-control" id="loginPassword" placeholder="Password">
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Login</button>
-        </form>
-        <div class="toggle-btn" onclick="toggleForms()">Don't have an account? Register here</div>
+<div class="flex-container">   
+    <!-- Form Wrapper -->
+    <div class="form-wrapper">
+        <!-- Login Form -->
+        <div id="login-form" class="form-container active">
+            <form>
+                <div class="form-group">
+                    <label for="loginEmail">Email address</label>
+                    <input type="email" class="form-control" id="loginEmail" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" class="form-control" id="loginPassword" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </form>
+            <div class="toggle-btn" onclick="toggleForms()">Don't have an account? Register here</div>
+        </div>
+
+        <!-- Registration Form -->
+        <div id="register-form" class="form-container">
+            <form>
+                <div class="form-group">
+                    <label for="registerName">Name</label>
+                    <input type="text" class="form-control" id="registerName" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email address</label>
+                    <input type="email" class="form-control" id="registerEmail" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" class="form-control" id="registerPassword" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Confirm Password</label>
+                    <input type="password" class="form-control" id="registerConfirmPassword" placeholder="Confirm Password">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </form>
+            <div class="toggle-btn" onclick="toggleForms()">Already have an account? Login here</div>
+        </div>
     </div>
-
-    <!-- Registration Form -->
-    <div id="register-form" class="form-container">
-        <div id="form-header" class="form-header">Register-Form</div>
-        <img src="/images/pyq1.png" alt="Register Image">
-        <form>
-            <div class="form-group">
-                <label for="registerName">Name</label>
-                <input type="text" class="form-control" id="registerName" placeholder="Enter your name">
-            </div>
-            <div class="form-group">
-                <label for="registerEmail">Email address</label>
-                <input type="email" class="form-control" id="registerEmail" placeholder="Enter email">
-            </div>
-            <div class="form-group">
-                <label for="registerPassword">Password</label>
-                <input type="password" class="form-control" id="registerPassword" placeholder="Password">
-            </div>
-            <div class="form-group">
-                <label for="registerConfirmPassword">Confirm Password</label>
-                <input type="password" class="form-control" id="registerConfirmPassword" placeholder="Confirm Password">
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Register</button>
-        </form>
-        <div class="toggle-btn" onclick="toggleForms()">Already have an account? Login here</div>
+    
+    <!-- Image Containers -->
+    <div class="image-container">
+        <img id="form-image" src="images/login.png" alt="Form Image">
     </div>
 </div>
 
@@ -142,21 +221,21 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<!-- Custom JS to toggle forms -->
+<!-- Custom JS to toggle forms and images -->
 <script>
     function toggleForms() {
         var loginForm = document.getElementById("login-form");
         var registerForm = document.getElementById("register-form");
-        var formHeader = document.getElementById("form-header");
+        var formImage = document.getElementById("form-image");
 
         if (loginForm.classList.contains("active")) {
             loginForm.classList.remove("active");
             registerForm.classList.add("active");
-            formHeader.textContent = "Register-Form";
+            formImage.src = "images/register.png"; // Change image to registration image
         } else {
             loginForm.classList.add("active");
             registerForm.classList.remove("active");
-            formHeader.textContent = "Login-Form";
+            formImage.src = "images/login.png"; // Change image to login image
         }
     }
 </script>
