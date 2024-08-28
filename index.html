@@ -28,7 +28,14 @@
     .hidden {
       display: none !important;
     }
-
+    .navbar-nav .nav-link {
+      font-weight: bold;
+  font-size: 18px; /* Adjust the size as needed */
+  color: black !important; /* Ensure the color is black */
+}
+.navbar-nav .nav-item {
+  margin-right: 20px; /* Adjust this value as needed */
+}
     /* Navbar Circle Image */
     .navbar-brand img {
       width: 50px;  /* Adjust the size as needed */
@@ -40,11 +47,17 @@
     /* Footer Styles */
     .footer {
       height: 60px; /* Adjust this value to your preferred height */
-      background-color: #f8f9fa; /* Optional: Customize background color */
+      background-color: #0a7aea; /* Optional: Customize background color */
       color: black;
       text-align: center;
       padding: 10px 0;
     }
+   #chatbot img {
+  width: 100%; /* Make the image fill the container */
+  height: 100%; /* Make the image fill the container */
+  object-fit: cover; /* Ensure the image covers the circular area */
+  border-radius: 50%; /* This ensures the image itself is circular */
+}
 
     /* Chatbot Icon */
     #chatbot {
@@ -143,7 +156,7 @@
       </div>
       <div class="col-md-4 d-flex justify-content-center align-items-center">
         <!-- Lottie Animation -->
-        <dotlottie-player src="https://lottie.host/8a56c110-6b6b-466e-8a45-9188af2f3beb/lAcZGqhZTW.json" background="transparent" speed="1" style="width: 900px; height: 500px;" loop autoplay></dotlottie-player>
+        <dotlottie-player src="https://lottie.host/8a56c110-6b6b-466e-8a45-9188af2f3beb/lAcZGqhZTW.json" background="transparent" speed="1" style="width: 100px; height: 500px;" loop autoplay></dotlottie-player>
       </div>
     </div>
   </div>
@@ -196,7 +209,7 @@
     </div>
   </div>
 
-  
+  <br>
   <div class="footer">
     <h4><b>&copy; 2024 My Themed Website</b></h4>
   </div>
@@ -208,33 +221,44 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Splash screen hide after animation
-      setTimeout(function() {
+      // Check if splash screen has already been shown in this session
+      if (!sessionStorage.getItem('splashScreenShown')) {
+        // Show splash screen
+        document.getElementById('splash-screen').classList.remove('hidden');
+  
+        // Hide splash screen after animation
+        setTimeout(function() {
+          document.getElementById('splash-screen').classList.add('hidden');
+          // Mark splash screen as shown in this session
+          sessionStorage.setItem('splashScreenShown', 'true');
+        }, 3000); // Adjust the timeout duration to match your animation length
+      } else {
+        // If splash screen has already been shown, hide it immediately
         document.getElementById('splash-screen').classList.add('hidden');
-      }, 3000);
-
+      }
+  
       // Logo click functionality
       document.getElementById('logo').addEventListener('click', function() {
         document.getElementById('logo-fullscreen').style.display = 'flex';
       });
-
+  
       document.getElementById('close-logo').addEventListener('click', function() {
         document.getElementById('logo-fullscreen').style.display = 'none';
       });
-
+  
       // Chatbot toggle
       const chatbotIcon = document.getElementById('chatbot');
       const chatWindow = document.getElementById('chat-window');
       const closeChatBtn = document.getElementById('close-chat');
-
+  
       chatbotIcon.addEventListener('click', function() {
         chatWindow.classList.toggle('d-none');
       });
-
+  
       closeChatBtn.addEventListener('click', function() {
         chatWindow.classList.add('d-none');
       });
-
+  
       // Upload and display image functionality
       function handleFileUpload(event) {
         const file = event.target.files[0];
@@ -251,4 +275,4 @@
     });
   </script>
 </body>
-</html>
+</html>  

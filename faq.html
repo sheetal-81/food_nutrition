@@ -1,445 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Document</title>
-            <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'>
-            <style>
-                        @import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap");
-
-:root {
-  --textBlue: hsl(238, 29%, 16%);
-  --textRed: hsl(14, 88%, 65%);
-  --textVeryDarkBlue: hsl(237, 12%, 33%);
-  --textDarkBlue: hsl(240, 6%, 50%);
-  --gradientViolet: hsl(273, 75%, 66%);
-  --gradientBlue: hsl(240, 73%, 65%);
-  --dividerGray: hsl(240, 5%, 91%);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Navbar with Lottie Animation</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <style>
+    /* Navbar Circle Image */
+    .navbar-brand img {
+      width: 50px;  /* Adjust the size as needed */
+      height: 50px; /* Adjust the size as needed */
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .navbar-nav .nav-link {
+      font-weight: bold;
+  font-size: 18px; /* Adjust the size as needed */
+  color: black !important; /* Ensure the color is black */
+}
+.navbar-nav .nav-item {
+  margin-right: 20px; /* Adjust this value as needed */
 }
 
-html {
-  box-sizing: border-box;
-  font-size: 62.5%;
-}
+    /* Navbar Styles */
+    .navbar {
+      background-color: rgb(214, 16, 16);
+    }
 
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-}
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(128, 128, 128, 1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Kumbh Sans", sans-serif;
-  font-size: 1.2rem;
-  font-weight: 400;
-  background: linear-gradient(var(--gradientViolet), var(--gradientBlue));
-}
+    .navbar-dark .navbar-nav .nav-link {
+      color: rgb(18, 17, 17);
+    }
 
-main {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    .dark-mode .navbar {
+      background-color: black !important;
+    }
 
-.card {
-  background-color: #fff;
-  border-radius: 2.5rem;
-  min-width: 33rem;
-  max-width: 92rem;
-  margin: 0 2.5rem 6rem;
-  padding: 0 2.3rem 4.8rem;
-  background-image: url("https://raw.githubusercontent.com/MizAndhre/FAQ-accordion-card/2ff2a02d093554f14d0390a409e825669313a16e/images/bg-pattern-mobile.svg");
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-size: 24rem;
-}
+    .dark-mode .navbar-dark .navbar-nav .nav-link {
+      color: goldenrod !important;
+    }
 
-.card__box {
-  display: none;
-}
+    /* Fullscreen Logo View */
+    #logo-fullscreen {
+      display: none; 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      background-color: rgba(0, 0, 0, 0.8); 
+      justify-content: center; 
+      align-items: center; 
+      z-index: 10000;
+    }
 
-.card__img {
-  position: relative;
-}
 
-.card__img-mobile {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%) translateY(-60%);
-  display: block;
-  width: 100%;
-  height: auto;
-  max-width: 24rem;
-}
 
-.card__img-desktop {
-  display: none;
-}
+    .hidden {
+      display: none !important;
+    }
 
-.card__text {
-  margin-top: 12.9rem;
-}
+    /* Accordion Styles */
+    .accordion-card {
+      border-radius: 10px;
+      box-shadow: 10px 4px 8px rgba(36, 7, 199, 0.79);
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #ddd;
+      margin-bottom: 1rem;
+    }
 
-h1 {
-  margin: 0;
-  padding-bottom: 1.5rem;
-  font-size: 3.3rem;
-  font-weight: 700;
-  text-align: center;
-  color: var(--textBlue);
-}
+    .accordion-card .card-header {
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #c7c6c6;
+      padding: 0.75rem 1.25rem;
+    }
 
-.accordion__item {
-  border-bottom: 0.1rem solid var(--dividerGray);
-}
+    .accordion-card .accordion-button {
+      font-size: 1.1rem;
+      padding: 1rem;
+      border: none;
+      background: #f8f9fa;
+      cursor: pointer;
+      border-radius: 0;
+      box-shadow: none;
+    }
 
-.accordion__item h2 {
-  margin: 0;
-}
+    .accordion-card .accordion-button:focus {
+      box-shadow: none;
+      outline: none;
+    }
 
-.accordion__title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 1.45rem 0.5rem;
-  border: none;
-  background: none;
-  font-family: "Kumbh Sans", sans-serif;
-  font-size: 1.4rem;
-  color: var(--textVeryDarkBlue);
-  text-align: left;
-  transition: all 300ms ease-in-out;
-}
+    .accordion-card .accordion-collapse {
+      overflow: hidden;
+      transition: height 0.3s ease;
+    }
 
-.accordion__title:focus,
-.accordion__title:focus-visible {
-  z-index: 3;
-  outline: solid rgba(255, 146, 113, 0.5);
-  box-shadow: 0 0 0.4rem 0.4rem rgba(161, 72, 45, 0.25);
-  border-radius: 0.3rem;
-}
+    .accordion-card .accordion-body {
+      padding: 1rem;
+      background-color: #fefefe;
+    }
 
-.accordion__title:hover {
-  cursor: pointer;
-  color: var(--textRed);
-}
+    /* Dark Mode Styles */
+    .dark-mode .accordion-card {
+      background-color: #333;
+      border-color: #444;
+    }
 
-.accordion__title::after {
-  content: "";
-  display: block;
-  width: 1rem;
-  height: 0.6rem;
-  background-image: url("https://raw.githubusercontent.com/MizAndhre/FAQ-accordion-card/2ff2a02d093554f14d0390a409e825669313a16e/images/icon-arrow-down.svg");
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  transition: transform 300ms ease-in-out;
-}
+    .dark-mode .accordion-card .card-header {
+      background-color: #444;
+    }
 
-.accordion__text {
-  text-align: left;
-  padding: 0.5rem 3rem 2.2rem 0.5rem;
-  line-height: 1.5;
-  color: var(--textDarkBlue);
-}
+    .dark-mode .accordion-card .accordion-button {
+      background: #444;
+      color: #eee;
+    }
 
-/* JS Classes */
-.accordion__title.open {
-  font-weight: 700;
-  color: var(--textBlue);
-}
-
-.accordion__title.open::after {
-  transform: rotate(180deg);
-}
-
-.accordion__collapse.collapse {
-  display: none;
-}
-
-.accordion__collapse.collapsing {
-  height: 0;
-  overflow: hidden;
-  transition: height 1s ease;
-}
-
-.accordion__collapse.open {
-  display: block;
-}
-
-/* DESKTOP STYLE */
-@media (min-width: 56em) {
-  .card {
-    position: relative;
-    display: flex;
-    padding: 6.1rem 9.4rem 8.4rem 0;
-    margin: 0;
-    background-image: url("https://raw.githubusercontent.com/MizAndhre/FAQ-accordion-card/2ff2a02d093554f14d0390a409e825669313a16e/images/bg-pattern-desktop.svg");
-    background-size: 100%;
-    /* background-position: -73rem center; */
-    background-position: -53rem -28rem;
-  }
-
-  .card__box {
-    display: block;
-    position: absolute;
-    z-index: 1;
-    top: 57%;
-    left: 0;
-    transform: translateX(-50%) translateY(-50%);
-  }
-
-  .card__img,
-  .card__text {
-    flex: 1;
-  }
-
-  .card__img {
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    padding-right: 9.2rem;
-  }
-
-  .card__img-mobile {
-    display: none;
-  }
-
-  .card__img-desktop {
-    display: block;
-    max-width: 47.2rem;
-    transform: translateX(-8.4rem);
-  }
-
-  .card__text {
-    margin-top: 0;
-  }
-
-  h1 {
-    padding-bottom: 2.1rem;
-    text-align: left;
-  }
-
-  .accordion__title {
-    font-size: 1.5rem;
-  }
-
-  .accordion__text {
-    line-height: 1.4;
-    padding: 0.5rem 3rem 2rem 0.5rem;
-  }
-}
-
-/* FOOTER */
-.attribution {
-  text-align: center;
-  font-size: 1.5rem;
-  padding-bottom: 2rem;
-  color: var(--dividerGray);
-}
-
-.attribution a {
-  color: #fff;
-  text-decoration: none;
-  transition: color 200ms ease-in-out;
-  font-weight: 700;
-}
-
-.attribution a:hover {
-  color: var(--textRed);
-}
-
-.icons i {
-  margin-top: 1rem;
-  font-size: 2.5rem;
-  padding-right: 1rem;
-}
-            </style>
+    .dark-mode .accordion-card .accordion-body {
+      background-color: #cc0e0e;
+      color: #eee;
+    }
+  </style>
+  <!-- Lottie Player Script -->
+  <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 </head>
 <body>
-    <!-- Fullscreen Logo View -->
-    <div id="logo-fullscreen" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:10000;">
-      <img src="images/logo.png" alt="Full Logo View" style="max-width:90%; max-height:90%;">
-      <button id="close-logo" style="position:absolute; top:20px; right:20px; font-size:30px; color:white; background:none; border:none; cursor:pointer;">&times;</button>
+  <!-- Fullscreen Logo View -->
+  <div id="logo-fullscreen">
+    <img src="images/logo.png" alt="Full Logo View">
+    <button id="close-logo">&times;</button>
+  </div>
+
+  <!-- Navbar -->
+  <!-- Fullscreen Logo View -->
+  <div id="logo-fullscreen" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:10000;">
+    <img src="images/logo.png" alt="Full Logo View" style="max-width:90%; max-height:90%;">
+    <button id="close-logo" style="position:absolute; top:20px; right:20px; font-size:30px; color:white; background:none; border:none; cursor:pointer;">&times;</button>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-info bg-light">
+    <!-- Replace Logo with Image in Circle -->
+    <a class="navbar-brand" href="#" id="logo">
+      <img src="images/logo.png" alt="Logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="profile.html"><i class="fas fa-user"></i> Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="consultation.html"><i class="fas fa-comments"></i> Consultation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="blog.html"><i class="fas fa-newspaper"></i> Blog & Articles</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
+        </li>
+      </ul>
+      <button class="btn btn-outline-danger ml-3" id="mode-toggle">Toggle Mode</button>
     </div>
-  
-    <nav class="navbar navbar-expand-lg navbar-info bg-light">
-      <!-- Replace Logo with Image in Circle -->
-      <a class="navbar-brand" href="#" id="logo">
-        <img src="images/logo.png" alt="Logo">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="profile.html"><i class="fas fa-user"></i> Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="consultation.html"><i class="fas fa-comments"></i> Consultation</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="blog.html"><i class="fas fa-newspaper"></i> Blog & Articles</a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
-          </li>
-          
-          <li class="nav-item">
-            <a class="nav-link" href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
-          </li>
-        </ul>
-        <button class="btn btn-outline-danger ml-3" id="mode-toggle">Toggle Mode</button>
+  </nav>
+
+  <main>
+    <section class="container my-4">
+      <div class="accordion-card">
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="accordion-button" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  How many team members can I invite?
+                </button>
+              </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                You can invite up to 2 additional users on the Free plan. There is no limit on team members for the Premium plan.
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <button class="accordion-button" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  What is the maximum file upload size?
+                </button>
+              </h5>
+            </div>
+
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+                No more than 2GB. All files in your account must fit your allotted storage space.
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button class="accordion-button" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  How do I reset my password?
+                </button>
+              </h5>
+            </div>
+
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+              <div class="card-body">
+                Click “Forgot password” from the login page or “Change password” from your profile page. A reset link will be emailed to you.
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="headingFour">
+              <h5 class="mb-0">
+                <button class="accordion-button" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  Can I cancel my subscription?
+                </button>
+              </h5>
+            </div>
+
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+              <div class="card-body">
+                Yes! Send us a message and we’ll process your request no questions asked.
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="headingFive">
+              <h5 class="mb-0">
+                <button class="accordion-button" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                  Do you provide additional support?
+                </button>
+              </h5>
+            </div>
+
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+              <div class="card-body">
+                Chat and email support is available 24/7. Phone lines are open during normal business hours.
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </nav>
-            <main>
-                        <section class="card">
-                          <!-- cube img -->
-                          <img src="https://raw.githubusercontent.com/MizAndhre/FAQ-accordion-card/2ff2a02d093554f14d0390a409e825669313a16e/images/illustration-box-desktop.svg" alt="Box" class="card__box" />
-                          <!-- Images -->
-                          <div class="card__img">
-                            <!-- mobile -->
-                            <img class="card__img-mobile" src="images/chatbot.jpg" alt="Woman online Mobile" />
-                            <!-- desktop -->
-                            <img class="card__img-desktop" src="https://raw.githubusercontent.com/MizAndhre/FAQ-accordion-card/2ff2a02d093554f14d0390a409e825669313a16e/images/illustration-woman-online-desktop.svg" alt="Woman online desktop" />
-                          </div>
-                      
-                          <!-- Text -->
-                          <div class="card__text">
-                            <h1>FAQ</h1>
-                      
-                            <div class="accordion">
-                              <!-- item 1 -->
-                              <div class="accordion__item">
-                                <button class="accordion__title">
-                                  How many team members can I invite?
-                                </button>
-                      
-                                <div class="accordion__collapse collapse">
-                                  <div class="accordion__text">
-                                    <p> You can invite up to 2 additional users on the Free plan.
-                                      There is no limit on team members for the Premium plan.</p>
-                                  </div>
-                                </div>
-                              </div>
-                              <!-- item 2 -->
-                              <div class="accordion__item">
-                                <button class="accordion__title">
-                                  What is the maximum file upload size?
-                                </button>
-                      
-                                <div class="accordion__collapse collapse">
-                                  <div class="accordion__text">
-                                    No more than 2GB. All files in your account must fit your
-                                    allotted storage space.
-                                  </div>
-                                </div>
-                              </div>
-                              <!-- item 3 -->
-                              <div class="accordion__item">
-                                <button class="accordion__title">
-                                  How do I reset my password?
-                                </button>
-                      
-                                <div class="accordion__collapse collapse">
-                                  <div class="accordion__text">
-                                    Click “Forgot password” from the login page or “Change
-                                    password” from your profile page. A reset link will be emailed
-                                    to you.
-                                  </div>
-                                </div>
-                              </div>
-                              <!-- item 4 -->
-                              <div class="accordion__item">
-                                <button class="accordion__title">
-                                  Can I cancel my subscription?
-                                </button>
-                      
-                                <div class="accordion__collapse collapse">
-                                  <div class="accordion__text">
-                                    Yes! Send us a message and we’ll process your request no
-                                    questions asked.
-                                  </div>
-                                </div>
-                              </div>
-                              <!-- item 5 -->
-                              <div class="accordion__item">
-                                <button class="accordion__title">
-                                  Do you provide additional support?
-                                </button>
-                      
-                                <div class="accordion__collapse collapse">
-                                  <div class="accordion__text">
-                                    Chat and email support is available 24/7. Phone lines are open
-                                    during normal business hours.
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </section>
-                      </main>
-                      <footer>
-                      <div class="footer">
-                        <h4><b>&copy; 2024 My Themed Website</b></h4>
-                      </div>
-            </footer>
+    </section>
+  </main>
 
-                      <script>
-                        const accordionBtns = document.querySelectorAll(".accordion__title");
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    // JavaScript to handle the fullscreen logo view
+    document.getElementById('logo').addEventListener('click', function() {
+      document.getElementById('logo-fullscreen').style.display = 'flex';
+    });
 
-accordionBtns.forEach((button) => {
-  button.addEventListener("click", (event) => {
-    let accCollapse = button.nextElementSibling;
+    document.getElementById('close-logo').addEventListener('click', function() {
+      document.getElementById('logo-fullscreen').style.display = 'none';
+    });
 
-    if (!button.classList.contains("collapsing")) {
-      // open accordion item
-      if (!button.classList.contains("open")) {
-        accCollapse.style.display = "block";
-        let accHeight = accCollapse.clientHeight;
-
-        setTimeout(() => {
-          accCollapse.style.height = accHeight + "px";
-          accCollapse.style.display = "";
-        }, 1);
-
-        accCollapse.classList = "accordion__collapse collapsing";
-
-        setTimeout(() => {
-          accCollapse.classList = "accordion__collapse collapse open";
-        }, 300);
-      }
-      //close accordion item
-      else {
-        accCollapse.classList = "accordion__collapse collapsing";
-
-        setTimeout(() => {
-          accCollapse.style.height = "0px";
-        }, 1);
-
-        setTimeout(() => {
-          accCollapse.classList = "accordion__collapse collapse";
-          accCollapse.style.height = "";
-        }, 300);
-      }
-
-      button.classList.toggle("open");
-    }
-  });
-});
-                      </script>
+    // JavaScript to handle accordion functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      $(document).ready(function() {
+        $('.accordion-button').on('click', function() {
+          $(this).toggleClass('collapsed');
+          $(this).next().toggleClass('show');
+        });
+      });
+    });
+  </script>
 </body>
 </html>

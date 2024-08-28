@@ -3,95 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us</title>
+  <title>Bootstrap Navbar with Lottie Animation</title>
   <!-- Bootstrap CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <!-- FontAwesome for icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <!-- Custom CSS -->
-  <link href="style.css" rel="stylesheet">
+
   <!-- Lottie Player Script -->
   <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+
   <style>
-      body {
-          background-color: #EDF2FB;
-          color: #333;
-          font-family: 'Montserrat', sans-serif;
-      }
+    /* Navbar Circle Image */
+    .navbar-brand img {
+      width: 50px;  /* Adjust the size as needed */
+      height: 50px; /* Adjust the size as needed */
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .navbar-nav .nav-link {
+      font-weight: bold;
+  font-size: 18px; /* Adjust the size as needed */
+  color: black !important; /* Ensure the color is black */
+}
+.navbar-nav .nav-item {
+  margin-right: 20px; /* Adjust this value as needed */
+}
 
-      .contact-section {
-          padding: 60px 0;
-      }
+    /* Navbar Styles */
+    .navbar {
+      background-color: rgb(214, 16, 16);
+    }
 
-      .card {
-          background-color: #E2EAFC;
-          border: none;
-          border-radius: 10px;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-          transition: all 0.3s ease;
-      }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(128, 128, 128, 1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
 
-      .card:hover {
-          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-          transform: translateY(-10px);
-      }
+    .navbar-dark .navbar-nav .nav-link {
+      color: black;
+    }
 
-      .card-title {
-          color: #0f51eb;
-          font-weight: bold;
-          margin-bottom: 20px;
-      }
+    .dark-mode .navbar {
+      background-color: black !important;
+    }
 
-      .card-text {
-          font-size: 16px;
-          margin-bottom: 20px;
-      }
+    .dark-mode .navbar-dark .navbar-nav .nav-link {
+      color: goldenrod !important;
+    }
 
-      .card ul li {
-          font-size: 16px;
-          margin-bottom: 10px;
-      }
+    /* Fullscreen Logo View */
+    #logo-fullscreen {
+      display: none; 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      background-color: rgba(0, 0, 0, 0.8); 
+      justify-content: center; 
+      align-items: center; 
+      z-index: 10000;
+    }
 
-      .card ul li i {
-          color: #ABC4FF;
-          margin-right: 10px;
-      }
 
-      .footer {
-          background-color: #333;
-          color: #fff;
-          margin-top: 30px;
-      }
 
-      /* Typewriter text style */
-      .typewriter-text {
-          font-size: 2em;
-          color: #333;
-          border-right: 2px solid #333; /* Cursor effect */
-          white-space: nowrap;
-          overflow: hidden; /* Ensures text doesn't overflow */
-          width: 0; /* Initial width */
-          animation: blink-caret 0.75s step-end infinite;
-      }
-
-      /* Blinking cursor animation */
-      @keyframes blink-caret {
-          50% { border-color: transparent; }
-      }
-
-      .img-fluid {
-          border-radius: 10px 10px 0 0;
-      }
-
-      /* Custom CSS for Navbar Toggler Icon */
-      .navbar-toggler-icon {
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(128, 128, 128, 1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-      }
-  </style>
-</head>
-<body>
-  <!-- Fullscreen Logo View -->
-  <div id="logo-fullscreen" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:10000;">
+    .hidden {
+      display: none !important;
+    }
+    </style>
+      <!-- Fullscreen Logo View -->
+  <div id="logo-fullscreen">
     <img src="images/logo.png" alt="Full Logo View" style="max-width:90%; max-height:90%;">
     <button id="close-logo" style="position:absolute; top:20px; right:20px; font-size:30px; color:white; background:none; border:none; cursor:pointer;">&times;</button>
   </div>
@@ -107,7 +88,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a>
+          <a class="nav-link" href="index.html"><i class="fas fa-home"></i> <b>Home</b></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="profile.html"><i class="fas fa-user"></i> Profile</a>
@@ -121,10 +102,9 @@
         <li class="nav-item">
           <a class="nav-link" href="blog.html"><i class="fas fa-newspaper"></i> Blog & Articles</a>
         </li>
-        <li class="nav-item ">
+        <li class="nav-item">
           <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
         </li>
-        
         <li class="nav-item">
           <a class="nav-link" href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a>
         </li>
@@ -208,38 +188,67 @@
     <p>&copy; 2024 Your Website. All rights reserved.</p>
   </footer>
 
-  <!-- Bootstrap JS, Popper.js, and jQuery -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    // JavaScript to show/hide Google Meet link field based on meeting type
+    document.querySelectorAll('input[name="meetingType"]').forEach((radio) => {
+        radio.addEventListener('change', function() {
+            const virtualMeetingField = document.querySelector('.virtual-meeting');
+            if (this.value === 'virtual') {
+                virtualMeetingField.style.display = 'block';
+            } else {
+                virtualMeetingField.style.display = 'none';
+            }
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+      // Splash screen hide after animation
+      setTimeout(function() {
+        document.getElementById('splash-screen').classList.add('hidden');
+      }, 3000);
 
-  <!-- Custom JS for Continuous Typing Effect -->
-  <script>
-    const textToType = "If you're interested in conducting a webinar or have any queries, feel free to reach out!";
+      // Logo click functionality
+      document.getElementById('logo').addEventListener('click', function() {
+        document.getElementById('logo-fullscreen').style.display = 'flex';
+      });
 
-    function typeText(element, text, delay = 100) {
-      let index = 0;
+      document.getElementById('close-logo').addEventListener('click', function() {
+        document.getElementById('logo-fullscreen').style.display = 'none';
+      });
 
-      function type() {
-        if (index < text.length) {
-          element.innerHTML += text.charAt(index);
-          index++;
-          setTimeout(type, delay);
-        } else {
-          setTimeout(() => {
-            element.innerHTML = ''; // Clear text
-            index = 0; // Reset index
-            type(); // Restart typing
-          }, 2000); // Pause before restarting
+      // Chatbot toggle
+      const chatbotIcon = document.getElementById('chatbot');
+      const chatWindow = document.getElementById('chat-window');
+      const closeChatBtn = document.getElementById('close-chat');
+
+      chatbotIcon.addEventListener('click', function() {
+        chatWindow.classList.toggle('d-none');
+      });
+
+      closeChatBtn.addEventListener('click', function() {
+        chatWindow.classList.add('d-none');
+      });
+
+      // Upload and display image functionality
+      function handleFileUpload(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const previewImage = document.getElementById('previewImage');
+            previewImage.src = e.target.result;
+            previewImage.classList.remove('d-none');
+          };
+          reader.readAsDataURL(file);
         }
       }
-      type();
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const typewriterElement = document.querySelector(".typewriter-text");
-      typeText(typewriterElement, textToType);
     });
-  </script>
+
+</script>
+</body>
+</html>
+
 </body>
 </html>
