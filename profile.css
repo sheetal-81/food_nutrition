@@ -1,0 +1,142 @@
+
+html, body {
+    height: 100%; /* Make sure html and body take the full height */
+    margin: 0; /* Remove default margin */
+}
+
+body {
+    display: flex; /* Use flexbox layout */
+    flex-direction: column; /* Arrange items vertically */
+    background: url('/static/images/normal.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.main-content {
+    flex: 1; /* Allow main content to grow and fill the space */
+}
+
+footer {
+    margin-top: auto; /* Push the footer to the bottom */
+}
+
+h1 {
+    padding: 10px;
+    margin: 15px;
+    font-size: 3rem;
+    color: #fefbfb;
+}
+
+h2 {
+    padding: 10px;
+    margin: 15px;
+    color: #faf7f7;
+    font-size: 2rem;
+}
+
+/* Chatbot Button Style */
+.chatbot-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #007bff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.chatbot-button img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+/* Chatbot Window Style */
+.chatbot-window {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 300px;
+    max-height: 500px; /* Increased height */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: none; /* Initially hidden */
+    flex-direction: column;
+}
+
+.chatbot-header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+}
+
+.chatbot-body {
+    padding: 10px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.chatbot-footer {
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+/* Adjusting the Profile Container */
+.profile-container {
+    background-color: white; /* Set the profile background to complete white */
+    color: #000; /* Ensure text is black */
+    width: 60%;
+    max-width: 450px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    margin: auto;
+    text-align: left;
+}
+
+/* Remove or lighten the overlay */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1); /* Make overlay almost transparent */
+    border-radius: 20px;
+    z-index: 1;
+}
+
+/* Ensure text is placed above overlay */
+.profile-container h1, .profile-container h3, .profile-container p {
+    position: relative;
+    z-index: 2;
+    color: #000; /* Ensure text is black */
+}
+
+/* Adjust button styles */
+.logout-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ede7e7;
+    color: rgb(7, 3, 3);
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    z-index: 2;
+}
+
+.logout-btn:hover {
+    background-color: #e10d0d;
+}

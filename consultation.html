@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultation Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="consultation.css">
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <nav class="navbar navbar-white bg-white">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <img src="logo.png" width="60" height="60" class="d-inline-block align-top me-3 rounded-circle" alt="">
+          <span class="mb-0 h1" style="font-size: 2rem;"><b> AI INTEGRATED DIETARY QUANTIFICATION </b></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html"><h4>Home</h4></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html"><h4>Register /Login</h4></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="profile.html"><h4>Profile</h4></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="dashboard.html"><h4>Dashboard</h4></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="consultation.html"><h4>Consultation</h4></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html"><h4>Blogs & Articles</h4></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  
+  <br>
+  <div class="container mt-5">
+    <h2 style="color: rgb(8, 8, 8); font-family: 'Times New Roman', Times, serif;">Consultation Form</h2>
+    <form>
+      <!-- Patient Details -->
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa fa-user"></i></span>
+            <input type="text" class="form-control" id="patientName" placeholder="Patient Name" required>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+            <input type="date" class="form-control" id="appointmentDate" required>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+            <input type="email" class="form-control" id="patientEmail" placeholder="Email" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa fa-phone"></i></span>
+            <input type="tel" class="form-control" id="patientPhone" placeholder="Phone Number" required>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
+            <input type="text" class="form-control" id="patientAddress" placeholder="Address" required>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <select class="form-select" id="appointmentType" required onchange="handleAppointmentTypeChange()">
+            <option value="" hidden>Select Appointment Type</option>
+            <option value="online">Online</option>
+            <option value="offline">Offline</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Online Appointment Details -->
+      <div id="onlineDetails" style="display: none;">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa fa-clock-o"></i></span>
+              <input type="time" class="form-control" id="onlineAppointmentTime" placeholder="Appointment Time" required>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Offline Appointment Details -->
+      <div id="offlineDetails" style="display: none;">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa fa-clock-o"></i></span>
+              <input type="time" class="form-control" id="offlineAppointmentTime" placeholder="Appointment Time" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
+              <input type="text" class="form-control" id="offlineLocation" placeholder="Location" required>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="medicalHistory" class="form-label">Medical History</label>
+        <textarea class="form-control" id="medicalHistory" rows="4" placeholder="Please describe any medical history..."></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="symptoms" class="form-label">Current Symptoms</label>
+        <textarea class="form-control" id="symptoms" rows="4" placeholder="Please describe your current symptoms..."></textarea>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Chatbot Button -->
+  <div class="chatbot-button" onclick="toggleChatbot()">
+    <img src="chatbot.jpg" alt="Chatbot">
+  </div>
+
+  <!-- Chatbot Window -->
+  <div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header">
+      Chat with Mini!
+    </div>
+    <div class="chatbot-body">
+      <p>Welcome! How can I help you today?</p>
+    </div>
+    <div class="chatbot-footer">
+      <input type="text" class="form-control" placeholder="Type a message...">
+    </div>
+  </div>
+
+  <script>
+    // Function to handle changes in appointment type
+    function handleAppointmentTypeChange() {
+      var appointmentType = document.getElementById("appointmentType").value;
+      var onlineDetails = document.getElementById("onlineDetails");
+      var offlineDetails = document.getElementById("offlineDetails");
+
+      if (appointmentType === "online") {
+        onlineDetails.style.display = "block";
+        offlineDetails.style.display = "none";
+      } else if (appointmentType === "offline") {
+        onlineDetails.style.display = "none";
+        offlineDetails.style.display = "block";
+      } else {
+        onlineDetails.style.display = "none";
+        offlineDetails.style.display = "none";
+      }
+    }
+
+    // Chatbot toggle function
+    function toggleChatbot() {
+      var chatbotWindow = document.getElementById("chatbotWindow");
+      chatbotWindow.style.display = chatbotWindow.style.display === "block" ? "none" : "block";
+    }
+  </script>
+
+</body>
+</html>
